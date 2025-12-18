@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Bus Tracker | Kadapa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="status.css">
+</head>
+<body class="bg-gray-100 font-sans h-screen overflow-hidden">
+
+    <div id="login-overlay" class="fixed inset-0 z-[2000] flex items-center justify-center bg-slate-900">
+        <div class="bg-white p-8 rounded-2xl shadow-2xl w-96 transform transition-all">
+            <h2 class="text-3xl font-extrabold text-blue-600 mb-2">Student Portal</h2>
+            <p class="text-gray-500 mb-6 italic">Enter credentials to track your bus.</p>
+            <input type="text" id="username" placeholder="Username (student)" class="w-full p-3 mb-4 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-blue-500">
+            <input type="password" id="password" placeholder="Password (1234)" class="w-full p-3 mb-6 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-blue-500">
+            <button onclick="handleLogin()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg shadow-lg transition">Login</button>
+        </div>
+    </div>
+
+    <div id="dashboard" class="hidden h-full flex flex-col md:flex-row">
+        
+        <aside class="w-full md:w-80 bg-white shadow-xl z-[1000] flex flex-col">
+            <div class="p-6 border-b bg-blue-50">
+                <h1 class="text-xl font-bold text-blue-800">Annamacharya Institute of Technology and Sciences</h1>
+                <p class="text-xs text-blue-600 font-semibold uppercase tracking-wider">Bus Tracker (Kadapa)</p>
+            </div>
+            
+            <div class="flex-1 overflow-y-auto p-4">
+                <h3 class="font-bold text-gray-700 mb-4 flex items-center gap-2">
+                    📅 Today's Schedule
+                </h3>
+                <div class="space-y-3">
+                    <div class="p-3 bg-gray-50 rounded-lg border-l-4 border-yellow-400">
+                        <p class="text-sm font-bold">Bus 1: RTC Bustand</p>
+                        <p class="text-xs text-gray-500">Departs: 08:00 AM</p>
+                    </div>
+                    <div class="p-3 bg-gray-50 rounded-lg border-l-4 border-yellow-400">
+                        <p class="text-sm font-bold">Bus 2: NGO Colony</p>
+                        <p class="text-xs text-gray-500">Departs: 08:15 AM</p>
+                    </div>
+                    <div class="p-3 bg-gray-50 rounded-lg border-l-4 border-yellow-400 opacity-60">
+                        <p class="text-sm font-bold">Bus 3: Yerramukkapalli</p>
+                        <p class="text-xs text-gray-500">Departs: 08:30 AM</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-4 border-t">
+                <button onclick="alert('Transport Incharge Details Dr. Shaik Jaheer Basha')" class="w-full bg-slate-800 text-white py-3 rounded-lg font-bold hover:bg-slate-700 flex items-center justify-center gap-2">
+                    📞 Contact Support
+                </button>
+            </div>
+        </aside>
+
+        <main class="flex-1 relative">
+            <div id="map" class="h-full w-full"></div>
+
+            <div id="ai-agent" class="absolute bottom-6 left-1/2 -translate-x-1/2 md:translate-x-0 md:left-auto md:right-6 w-[90%] md:w-80 bg-white/95 backdrop-blur-sm p-4 rounded-xl shadow-2xl border-t-4 border-blue-500 z-[1000] opacity-0 transition-all transform translate-y-10">
+                <div class="flex items-start gap-3">
+                    <div class="bg-blue-100 p-2 rounded-full text-xl">🤖</div>
+                    <div>
+                        <h4 class="font-bold text-slate-800">AI Recommendation</h4>
+                        <p id="ai-text" class="text-sm text-slate-600 mt-1">Calculating nearest bus...</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="story.js"></script>
+</body>
+</html>

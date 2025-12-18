@@ -1,0 +1,36 @@
+/* Ensure the map occupies full space */
+#map {
+    height: 100%;
+    width: 100%;
+    background: #e5e7eb;
+}
+
+/* AI Card Animation */
+.ai-active {
+    opacity: 1 !important;
+    transform: translate(-50%, 0) !important;
+}
+
+@media (min-width: 768px) {
+    .ai-active {
+        transform: translate(0, 0) !important;
+    }
+}
+
+/* Custom Marker Styling */
+.bus-marker {
+    background: #fbbf24;
+    border: 2px solid #92400e;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 30px;
+    font-size: 18px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+.user-marker {
+    background: #3b82f6;
+    border: 3px solid white;
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.8);
+}
